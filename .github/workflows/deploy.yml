@@ -43,4 +43,4 @@ jobs:
         with:
           folder: dist/britannia/browser  # La carpeta exacta a subir
           branch: gh-pages
-          clean: true
+          clean: true  
