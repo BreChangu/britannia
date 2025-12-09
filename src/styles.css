@@ -1,1 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
+:host {
+  /* --- PALETA BRITANNIA GREEN --- */
+  
+  /* Primario: Un verde oscuro, elegante y académico (British Racing Green) */
+  --primary-green: #064e3b;  /* Emerald 900 */
+  
+  /* Acento: Un verde vibrante para botones y llamadas a la acción */
+  --accent-green: #10b981;   /* Emerald 500 */
+  
+  /* Fondos */
+  --bg-white: #ffffff;
+  --bg-paper: #f0fdf4;       /* Un verde muuuuy pálido, casi blanco (Mint Tint) */
+  
+  /* Texto */
+  --text-main: #022c22;      /* Casi negro, pero con tinte verde */
+  --text-muted: #374151;     /* Gris neutro */
+  
+  /* Fuentes (Mantenemos la elegancia) */
+  --font-serif: 'DM Serif Display', serif;
+  --font-sans: 'Manrope', sans-serif;
+}

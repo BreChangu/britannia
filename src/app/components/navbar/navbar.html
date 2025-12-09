@@ -1,0 +1,40 @@
+<nav [class.scrolled]="isScrolled()">
+  <div class="nav-container">
+    
+    <a routerLink="/" class="logo" (click)="closeMenu()">
+      <span class="logo-text">Britannia<span class="dot">.</span></span>
+    </a>
+
+    <ul class="nav-links desktop-only">
+      <li>
+        <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Inicio</a>
+      </li>
+      <li>
+        <a routerLink="/nosotros" routerLinkActive="active">Nosotros</a>
+      </li>
+      <li>
+        <a routerLink="/cursos" routerLinkActive="active">Cursos</a>
+      </li>
+      </ul>
+
+    <div class="nav-actions desktop-only">
+      <a routerLink="/contacto" class="btn-primary">Test de Nivel</a>
+    </div>
+
+    <button class="hamburger" [class.active]="isMenuOpen()" (click)="toggleMenu()" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+  </div>
+
+  <div class="mobile-menu" [class.open]="isMenuOpen()">
+    <ul class="mobile-links">
+      <li><a routerLink="/" (click)="closeMenu()">Inicio</a></li>
+      <li><a routerLink="/nosotros" (click)="closeMenu()">Nosotros</a></li>
+      <li><a routerLink="/cursos" (click)="closeMenu()">Cursos</a></li>
+      <li><a routerLink="/contacto" class="btn-primary mobile-btn" (click)="closeMenu()">Test de Nivel</a></li>
+    </ul>
+  </div>
+</nav>

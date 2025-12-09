@@ -1,0 +1,141 @@
+:host {
+  /* PALETA FOOTER */
+  --footer-bg: #064e3b;      /* Racing Green Profundo */
+  --text-white: #ecfdf5;     /* Menta muy pálido (Casi blanco) */
+  --text-muted: #a7f3d0;     /* Verde claro desaturado */
+  --accent: #34d399;         /* Verde esmeralda brillante */
+  --border-light: rgba(255, 255, 255, 0.1);
+  
+  --font-serif: 'DM Serif Display', serif;
+  --font-sans: 'Manrope', sans-serif;
+}
+
+.britannia-footer {
+  background-color: var(--footer-bg);
+  color: var(--text-white);
+  font-family: var(--font-sans);
+  padding: 80px 0 30px;
+  position: relative;
+  overflow: hidden; /* Para recortar la marca de agua */
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  position: relative;
+  z-index: 2; /* Encima de la marca de agua */
+}
+
+/* --- GRID PRINCIPAL --- */
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1.5fr; /* Marca ancha, Links compactos, Contacto medio */
+  gap: 60px;
+  margin-bottom: 60px;
+}
+
+/* Columna Marca */
+.footer-logo {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  color: white;
+  text-decoration: none;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+.dot { color: var(--accent); }
+
+.brand-desc {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+  margin-bottom: 30px;
+  max-width: 350px;
+}
+
+/* Redes Sociales */
+.social-row { display: flex; gap: 12px; }
+.social-btn {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-light);
+  display: flex; align-items: center; justify-content: center;
+  color: white; font-size: 0.8rem; font-weight: 700;
+  text-decoration: none; transition: 0.3s;
+}
+.social-btn:hover { background: var(--accent); color: var(--footer-bg); transform: translateY(-3px); }
+
+/* Títulos de Columna */
+.col-title {
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  margin-bottom: 24px;
+  color: white;
+  letter-spacing: 0.5px;
+}
+
+/* Listas de Enlaces */
+.footer-links, .contact-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex; flex-direction: column; gap: 16px;
+}
+
+.footer-links a {
+  text-decoration: none;
+  color: var(--text-muted);
+  font-size: 1rem;
+  transition: all 0.2s;
+}
+.footer-links a:hover { color: var(--accent); padding-left: 5px; }
+
+/* Lista de Contacto */
+.contact-list li {
+  display: flex; align-items: flex-start; gap: 15px;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+.icon { font-size: 1.1rem; }
+.phone-link, .mail-link { color: var(--text-white); text-decoration: none; font-weight: 600; border-bottom: 1px solid transparent; transition: 0.2s; }
+.phone-link:hover, .mail-link:hover { border-color: var(--accent); }
+
+/* --- BOTTOM --- */
+.divider {
+  width: 100%; height: 1px;
+  background: var(--border-light);
+  margin-bottom: 30px;
+}
+
+.footer-bottom {
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 20px;
+  font-size: 0.85rem; color: var(--text-muted);
+}
+
+.legal-links { display: flex; gap: 20px; }
+.legal-links a { text-decoration: none; color: var(--text-muted); transition: 0.2s; }
+.legal-links a:hover { color: white; }
+
+/* --- MARCA DE AGUA (Decoración) --- */
+.watermark-bg {
+  position: absolute;
+  bottom: -50px; right: -50px;
+  font-family: var(--font-serif);
+  font-size: 400px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.02); /* Casi invisible */
+  z-index: 1;
+  pointer-events: none;
+  line-height: 1;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+  .footer-bottom { flex-direction: column; text-align: center; }
+  .watermark-bg { font-size: 200px; }
+}
