@@ -1,0 +1,46 @@
+name: Deploy Britannia to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main  # Tu rama principal en este repo es 'main'
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Install Angular CLI
+        run: npm install -g @angular/cli
+
+      # 1. CONSTRUCCIÓN
+      # Aquí usamos '/britannia/' porque es el nombre de tu repositorio
+      - name: Build
+        run: ng build --configuration production --base-href=/britannia/
+
+      # 2. TRUCO PARA RUTAS (404)
+      # Usamos 'dist/britannia/browser' porque esa es la carpeta que genera Angular
+      - name: Copy index.html to 404.html
+        run: cp dist/britannia/browser/index.html dist/britannia/browser/404.html
+
+      # 3. DESPLIEGUE
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: dist/britannia/browser  # La carpeta exacta a subir
+          branch: gh-pages
+          clean: true
