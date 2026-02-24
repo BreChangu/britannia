@@ -1,53 +1,74 @@
 <nav [class.scrolled]="isScrolled()">
   <div class="nav-container">
     
-    <a routerLink="/" class="logo" (click)="closeMenu()">
-      <span class="logo-text">Britannia<span class="dot">.</span></span>
+   <a routerLink="/" class="logo" (click)="closeMenu()" aria-label="Ir al inicio">
+      <img 
+        src="images/Britania.png" 
+        alt="Britannia Learning Center" 
+        class="logo-img"
+        loading="eager" 
+        fetchpriority="high">
     </a>
 
     <ul class="nav-links desktop-only">
-      <li>
-        <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Inicio</a>
-      </li>
-      <li>
-        <a routerLink="/nosotros" routerLinkActive="active">Nosotros</a>
-      </li>
-      <li>
-        <a routerLink="/cursos" routerLinkActive="active">Cursos</a>
-      </li>
-
-
-      <li>
-        <a routerLink="/contacto" routerLinkActive="active">Contacto</a>
-      </li>
       
-    
+      <li class="dropdown">
+        <button class="dropbtn" aria-haspopup="true" aria-expanded="false">
+          Haz tu test de nivel <span class="arrow">▼</span>
+        </button>
+        <div class="dropdown-content">
+          <a routerLink="/test-ingles">Test de nivel de inglés</a>
+          <a routerLink="/test-inteligencia">Conoce tu inteligencia</a>
+        </div>
+      </li>
+
+      <li class="dropdown">
+        <button class="dropbtn" aria-haspopup="true" aria-expanded="false">
+          Quiénes somos <span class="arrow">▼</span>
+        </button>
+        <div class="dropdown-content">
+          <a routerLink="/nosotros/mision">Visión y Misión</a>
+          <a routerLink="/nosotros/plan-estudios">Plan de estudios</a>
+        </div>
+      </li>
+
     </ul>
 
     <div class="nav-actions desktop-only">
-        <a href="https://www.efset.org/es/quick-check/" 
-   target="_blank" 
-   rel="noopener noreferrer" 
-   class="btn-primary">
-  
-  <span class="icon">📝</span> Test de Nivel Gratis
-</a>
+      <a routerLink="/contacto" class="btn-primary btn-contact">Contacto</a>
     </div>
 
-    <button class="hamburger" [class.active]="isMenuOpen()" (click)="toggleMenu()" aria-label="Menu">
-      <span></span>
-      <span></span>
-      <span></span>
+    <button class="hamburger" [class.active]="isMenuOpen()" (click)="toggleMenu()" aria-label="Abrir menú" [attr.aria-expanded]="isMenuOpen()">
+      <span></span><span></span><span></span>
     </button>
-
   </div>
 
   <div class="mobile-menu" [class.open]="isMenuOpen()">
     <ul class="mobile-links">
-      <li><a routerLink="/" (click)="closeMenu()">Inicio</a></li>
-      <li><a routerLink="/nosotros" (click)="closeMenu()">Nosotros</a></li>
-      <li><a routerLink="/cursos" (click)="closeMenu()">Cursos</a></li>
-      <li><a routerLink="/contacto" class="btn-primary mobile-btn" (click)="closeMenu()">Test de Nivel</a></li>
+      
+      <li class="mobile-dropdown">
+        <button class="mobile-dropbtn" (click)="toggleTestMenu()">
+          Haz tu test de nivel <span class="arrow" [class.rotate]="isTestMenuOpen()">▼</span>
+        </button>
+        <div class="mobile-dropdown-content" [class.show]="isTestMenuOpen()">
+          <a routerLink="/test-ingles" (click)="closeMenu()">Test de inglés</a>
+          <a routerLink="/test-inteligencia" (click)="closeMenu()">Test de inteligencia</a>
+        </div>
+      </li>
+
+      <li class="mobile-dropdown">
+        <button class="mobile-dropbtn" (click)="toggleAboutMenu()">
+          Quiénes somos <span class="arrow" [class.rotate]="isAboutMenuOpen()">▼</span>
+        </button>
+        <div class="mobile-dropdown-content" [class.show]="isAboutMenuOpen()">
+          <a routerLink="/nosotros/mision" (click)="closeMenu()">Visión y Misión</a>
+          <a routerLink="/nosotros/plan-estudios" (click)="closeMenu()">Plan de estudios</a>
+        </div>
+      </li>
+
+      <li>
+        <a routerLink="/contacto" class="btn-primary mobile-btn" (click)="closeMenu()">Contacto</a>
+      </li>
     </ul>
   </div>
 </nav>

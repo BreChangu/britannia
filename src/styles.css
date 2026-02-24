@@ -1,22 +1,55 @@
-/* You can add global styles to this file, and also import other style files */
-:host {
-  /* --- PALETA BRITANNIA GREEN --- */
+:root {
+  /* =========================================
+     DESIGN SYSTEM - PALETA DE COLORES
+     ========================================= */
   
-  /* Primario: Un verde oscuro, elegante y académico (British Racing Green) */
-  --primary-green: #064e3b;  /* Emerald 900 */
+  /* Color 1: Verde Bosque Oscuro (Texto, Footer, Navbar) */
+  --color-primary: #005515; 
   
-  /* Acento: Un verde vibrante para botones y llamadas a la acción */
-  --accent-green: #10b981;   /* Emerald 500 */
+  /* Color 2: Rosa Suave (Llamadas a la acción, botones) */
+  --color-accent-1: #CF6F77; 
   
-  /* Fondos */
-  --bg-white: #ffffff;
-  --bg-paper: #f0fdf4;       /* Un verde muuuuy pálido, casi blanco (Mint Tint) */
+  /* Color 3: Arena/Gris cálido (Fondo principal de la web) */
+  --color-bg-main: #E4D5D3; 
   
-  /* Texto */
-  --text-main: #022c22;      /* Casi negro, pero con tinte verde */
-  --text-muted: #374151;     /* Gris neutro */
+  /* Color 4: Durazno/Beige (Tarjetas, hover states) */
+  --color-accent-2: #EDC8A3; 
+
+  /* Colores de apoyo */
+  --color-white: #ffffff;
   
-  /* Fuentes (Mantenemos la elegancia) */
-  --font-serif: 'DM Serif Display', serif;
-  --font-sans: 'Manrope', sans-serif;
+  /* Tipografía global */
+  --font-primary: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* Reset y estilos base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--color-bg-main);
+  color: var(--color-primary);
+  font-family: var(--font-primary);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Botón global reutilizable */
+.btn-primary {
+  background-color: var(--color-accent-1);
+  color: var(--color-white);
+  padding: 12px 28px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-primary);
+  color: var(--color-accent-2);
+  transform: translateY(-2px);
 }

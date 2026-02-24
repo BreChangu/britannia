@@ -9,11 +9,13 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   styleUrl: './navbar.css',
 })
 export class NavbarComponent {
-  
   isScrolled = signal(false);
   isMenuOpen = signal(false);
 
-  // Detectar scroll para añadir sombra
+  // QA: Estados independientes para los menús desplegables en versión móvil
+  isTestMenuOpen = signal(false);
+  isAboutMenuOpen = signal(false);
+
   @HostListener('window:scroll', [])
   onWindowScroll() {
     this.isScrolled.set(window.scrollY > 20);
@@ -25,5 +27,16 @@ export class NavbarComponent {
 
   closeMenu() {
     this.isMenuOpen.set(false);
+    this.isTestMenuOpen.set(false);
+    this.isAboutMenuOpen.set(false);
+  }
+
+  // Funciones para el acordeón móvil
+  toggleTestMenu() {
+    this.isTestMenuOpen.update(val => !val);
+  }
+
+  toggleAboutMenu() {
+    this.isAboutMenuOpen.update(val => !val);
   }
 }
