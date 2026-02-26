@@ -1,12 +1,16 @@
 <nav [class.scrolled]="isScrolled()">
   <div class="nav-container">
-    
     <a routerLink="/" class="logo" (click)="closeMenu()" aria-label="Ir al inicio">
-      <img src="images/Britania.png" alt="Britannia Learning Center" class="logo-img" loading="eager" fetchpriority="high">
+      <img
+        src="images/Britania.png"
+        alt="Britannia Learning Center"
+        class="logo-img"
+        loading="eager"
+        fetchpriority="high"
+      />
     </a>
 
     <ul class="nav-links desktop-only">
-      
       <li class="dropdown">
         <button class="dropbtn" aria-haspopup="true" aria-expanded="false">
           Haz tu test <span class="arrow">▼</span>
@@ -18,7 +22,12 @@
       </li>
 
       <li>
-        <a routerLink="/nosotros" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="nav-item">
+        <a
+          routerLink="/nosotros"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="nav-item"
+        >
           Quiénes somos
         </a>
       </li>
@@ -34,33 +43,42 @@
           <a routerLink="/plan-estudios/b2">Nivel B2 (Avanzado)</a>
         </div>
       </li>
-
     </ul>
 
     <div class="nav-actions desktop-only">
       <a routerLink="/contacto" class="btn-primary btn-contact">Contacto</a>
     </div>
 
-    <button class="hamburger" [class.active]="isMenuOpen()" (click)="toggleMenu()" aria-label="Abrir menú">
+    <button
+      class="hamburger"
+      [class.active]="isMenuOpen()"
+      (click)="toggleMenu()"
+      aria-label="Abrir menú"
+    >
       <span></span><span></span><span></span>
     </button>
   </div>
 
   <div class="mobile-menu" [class.open]="isMenuOpen()">
     <ul class="mobile-links">
-      
       <li class="mobile-dropdown">
         <button class="mobile-dropbtn" (click)="toggleTestMenu()">
           Haz tu test <span class="arrow" [class.rotate]="isTestMenuOpen()">▼</span>
         </button>
         <div class="mobile-dropdown-content" [class.show]="isTestMenuOpen()">
-          <a routerLink="/test-ingles" (click)="closeMenu()">Test de inglés</a>
+          <a routerLink="/placement-test" (click)="closeMenu()">Test de nivel de inglés</a>
           <a routerLink="/test-inteligencia" (click)="closeMenu()">Test de inteligencia</a>
         </div>
       </li>
 
       <li>
-        <a routerLink="/nosotros" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="closeMenu()" class="mobile-nav-item">
+        <a
+          routerLink="/nosotros"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          (click)="closeMenu()"
+          class="mobile-nav-item"
+        >
           Quiénes somos
         </a>
       </li>
