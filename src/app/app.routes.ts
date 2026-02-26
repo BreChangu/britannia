@@ -4,6 +4,9 @@ import { NosotrosComponent } from './pages/nosotros/nosotros';
 import { Cursos } from './pages/cursos/cursos';
 import { Contacto } from './pages/contacto/contacto';
 import { PlanEstudiosComponent } from './pages/plan-estudios/plan-estudios';
+import { PlacementTestComponent } from './pages/placement-test/placement-test';
+
+
 export const routes: Routes = [
   { 
     path: '', 
@@ -14,6 +17,11 @@ export const routes: Routes = [
     path: 'nosotros', 
     component: NosotrosComponent, 
     title: 'Nuestra Metodología y Filosofía | Britannia' 
+  },
+  { 
+    path: 'placement-test', 
+    component: PlacementTestComponent, 
+    title: 'Test de Nivel de Inglés | Britannia' 
   },
   { 
     path: 'cursos', 

@@ -1,0 +1,79 @@
+<section class="assessment-canvas">
+  <div class="glow-bg"></div>
+
+  <div class="assessment-container">
+    
+    <header class="assessment-header" *ngIf="!testFinished()">
+      <div class="header-content">
+        <span class="step-badge">Pregunta {{currentIndex() + 1}} de 50</span>
+        <div class="progress-track">
+          <div class="progress-bar" [style.width.%]="progressPercent()"></div>
+        </div>
+        <span class="percentage-badge">{{progressPercent()}}%</span>
+      </div>
+    </header>
+
+    <main class="assessment-body" *ngIf="!testFinished()">
+      <div class="layout-controller" [class.split-mode]="currentIndex() >= 40">
+        
+        <aside class="reading-area glass" *ngIf="currentIndex() >= 40">
+  <div class="reading-header">
+    <span class="tag">Reading Section</span>
+  </div>
+  
+  <div class="reading-text-container">
+    <p>{{ readingText() }}</p>
+  </div>
+</aside>
+
+        <div class="question-area">
+          <h2 class="question-title">{{currentQuestion()?.text}}</h2>
+          
+          <div class="options-stack">
+            <button *ngFor="let option of currentQuestion()?.options" 
+              (click)="selectOption(option)"
+              [class.active]="userAnswers()[currentIndex()] === option"
+              class="option-card">
+              <span class="indicator"></span>
+              <span class="label">{{option}}</span>
+            </button>
+          </div>
+
+          <div class="quiz-footer">
+            <button (click)="nextQuestion()" [disabled]="!userAnswers()[currentIndex()]" class="btn-next-step">
+              <span>{{ currentIndex() === 49 ? 'Siguiente Paso' : 'Siguiente' }}</span>
+              <span class="arrow">→</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+    <div class="lead-form-screen glass" *ngIf="testFinished() && !showResults()">
+      <span class="tag-centered">¡Casi terminamos!</span>
+      <h2 class="question-title text-center">Ingresa tus datos para ver tu Nivel Oficial</h2>
+      
+      <form class="lead-form" (submit)="submitLead($event)">
+        <input type="text" placeholder="Tu Nombre Completo" required class="premium-input">
+        <input type="email" placeholder="tu@correo.com" required class="premium-input">
+        
+        <button type="submit" class="btn-next-step btn-center">
+          <span>Revelar mi nivel</span>
+          <span class="arrow">→</span>
+        </button>
+      </form>
+    </div>
+
+    <div class="victory-screen glass" *ngIf="showResults()">
+      <span class="victory-tag">Certificación Britannia</span>
+      <h1 class="victory-title">Tu nivel es: <span class="highlight">{{finalLevel()}}</span></h1>
+      
+      <div class="actions">
+        <a [href]="getWhatsAppLink(finalLevel())" target="_blank" class="btn-action-primary">Inscribirme ahora</a>
+        <button (click)="restartTest()" class="btn-action-sub">Repetir Test</button>
+      </div>
+    </div>
+
+  </div>
+</section>
