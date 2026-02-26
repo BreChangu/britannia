@@ -15,6 +15,7 @@ export class NavbarComponent {
   // QA: Estados independientes para los menús desplegables en versión móvil
   isTestMenuOpen = signal(false);
   isAboutMenuOpen = signal(false);
+  isPlanesMenuOpen = signal(false); // <-- 1. NUEVO ESTADO PARA PLANES
 
   @HostListener('window:scroll', [])
   onWindowScroll() {
@@ -29,6 +30,7 @@ export class NavbarComponent {
     this.isMenuOpen.set(false);
     this.isTestMenuOpen.set(false);
     this.isAboutMenuOpen.set(false);
+    this.isPlanesMenuOpen.set(false); // <-- 2. APAGAR TAMBIÉN AL CERRAR MENÚ
   }
 
   // Funciones para el acordeón móvil
@@ -38,5 +40,9 @@ export class NavbarComponent {
 
   toggleAboutMenu() {
     this.isAboutMenuOpen.update(val => !val);
+  }
+
+  togglePlanesMenu() { // <-- 3. NUEVA FUNCIÓN PARA ABRIR/CERRAR EL ACORDEÓN
+    this.isPlanesMenuOpen.update(val => !val);
   }
 }

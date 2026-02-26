@@ -1,0 +1,116 @@
+:host {
+  --bg-dark: #020b0e;
+  --green-primary: #005151;
+  --green-light: #008f8f;
+  --pink-accent: #CF6F77;
+  --white: #ffffff;
+  --text-gray: #a0aec0;
+  --glass-bg: rgba(255, 255, 255, 0.02);
+  --glass-border: rgba(255, 255, 255, 0.05);
+  --font-serif: 'DM Serif Display', serif;
+  --font-sans: 'Manrope', sans-serif;
+}
+
+/* --- SECCIÓN GLOBAL --- */
+.about-global-section {
+  background-color: var(--bg-dark);
+  min-height: 100vh;
+  padding: 10rem 0 6rem;
+  position: relative;
+  overflow: hidden;
+  color: var(--white);
+  font-family: var(--font-sans);
+}
+
+.about-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 10;
+}
+
+/* --- LUCES (ADN BRITANNIA) --- */
+.glow-container { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+.ambient-glow { position: absolute; border-radius: 50%; filter: blur(160px); opacity: 0.6; }
+.glow-1 { width: 60vw; height: 60vw; background: rgba(0, 81, 81, 0.3); top: -15%; left: -15%; }
+.glow-2 { width: 50vw; height: 50vw; background: rgba(207, 111, 119, 0.2); bottom: 5%; right: -10%; }
+.glow-3 { width: 35vw; height: 35vw; background: rgba(0, 143, 143, 0.15); top: 35%; left: 35%; }
+
+/* --- HERO --- */
+.about-hero { text-align: center; margin-bottom: 8rem; }
+.eyebrow-tech { color: var(--pink-accent); text-transform: uppercase; letter-spacing: 4px; font-size: 0.9rem; font-weight: 800; display: block; margin-bottom: 1.5rem; }
+.master-title { font-family: var(--font-serif); font-size: clamp(3rem, 7vw, 5.5rem); line-height: 1.1; margin-bottom: 2.5rem; }
+.text-gradient { background: linear-gradient(135deg, var(--green-light) 0%, #fff 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+.hero-composition { position: relative; }
+.hero-panorama { width: 100%; height: 500px; border-radius: 2rem; overflow: hidden; border: 1px solid var(--glass-border); box-shadow: 0 40px 80px rgba(0,0,0,0.6); }
+.panorama-img { width: 100%; height: 100%; object-fit: cover; }
+.panorama-overlay { position: absolute; inset: 0; background: linear-gradient(to top, var(--bg-dark) 0%, transparent 70%); }
+
+.glass-floating-badge {
+  position: absolute; bottom: 40px; left: 40px;
+  background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(25px);
+  padding: 2rem 3rem; border-radius: 1.5rem; border: 1px solid rgba(255,255,255,0.1);
+  display: flex; align-items: center; gap: 1.5rem; box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+  animation: float 6s ease-in-out infinite alternate;
+}
+.badge-num { font-family: var(--font-serif); font-size: 4rem; color: var(--green-light); line-height: 1; }
+.badge-text { font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; color: var(--white); display: block; line-height: 1.2; text-align: left;}
+
+/* --- BENTO: PROPÓSITO --- */
+.purpose-bento { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: -60px; margin-bottom: 8rem; }
+.glass-card-purpose { 
+  background: var(--glass-bg); backdrop-filter: blur(25px); padding: 3.5rem; 
+  border-radius: 2rem; border: 1px solid var(--glass-border); transition: all 0.3s ease;
+}
+.glass-card-purpose:hover { transform: translateY(-8px); border-color: rgba(255,255,255,0.15); }
+.card-tag { color: var(--pink-accent); font-weight: 900; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2.5px; margin-bottom: 1.5rem; display: block; }
+.glass-card-purpose h3 { font-family: var(--font-serif); font-size: 2.5rem; margin-bottom: 1rem; }
+.glass-card-purpose p { color: var(--text-gray); font-size: 1.1rem; line-height: 1.6; }
+
+/* --- BENTO: METODOLOGÍA --- */
+.section-title-serif { font-family: var(--font-serif); font-size: 3.5rem; text-align: center; margin-bottom: 4.5rem; }
+.bento-grid-about { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+
+.feature-method-card {
+  grid-column: span 2;
+  background: rgba(0, 81, 81, 0.05); border: 1px solid rgba(0, 81, 81, 0.2);
+  padding: 4.5rem; border-radius: 2.5rem;
+}
+.method-header { display: flex; align-items: center; gap: 3rem; margin-bottom: 3.5rem; }
+.method-icon { font-size: 4rem; background: rgba(255,255,255,0.03); width: 110px; height: 110px; border-radius: 1.8rem; display: flex; align-items: center; justify-content: center; border: 1px solid var(--glass-border); }
+.method-info h3 { font-family: var(--font-serif); font-size: 2.5rem; margin-bottom: 0.5rem; }
+.method-info p { color: var(--green-light); font-weight: 700; font-size: 1.1rem; }
+
+/* --- TAGS SISTEMA ÚNICO --- */
+.tags-cloud { display: flex; flex-wrap: wrap; gap: 1rem; }
+.m-tag { 
+  background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); 
+  padding: 0.8rem 1.6rem; border-radius: 12px; font-size: 1rem; font-weight: 600; 
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.m-tag:hover { background: var(--white); color: var(--bg-dark); transform: translateY(-4px); }
+
+.info-card {
+  text-align: center; padding: 3.5rem; border-radius: 2.5rem;
+  background: var(--glass-bg); backdrop-filter: blur(20px); border: 1px solid var(--glass-border);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+}
+.icon-sm { font-size: 3rem; margin-bottom: 1.5rem; }
+.info-card h4 { font-family: var(--font-serif); font-size: 1.8rem; margin-bottom: 1rem; }
+
+/* --- ANIMACIONES --- */
+.hero-content-animate { animation: fadeUp 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards; opacity: 0; transform: translateY(40px); }
+.hero-image-animate { animation: fadeUp 1.2s cubic-bezier(0.25, 1, 0.5, 1) 0.4s forwards; opacity: 0; transform: translateY(50px); }
+
+@keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+@keyframes float { 0% { transform: translateY(0); } 100% { transform: translateY(-20px); } }
+
+/* --- RESPONSIVE --- */
+@media (max-width: 1024px) {
+  .purpose-bento, .bento-grid-about { grid-template-columns: 1fr; }
+  .feature-method-card { grid-column: span 1; padding: 3rem 2rem; }
+  .about-hero { margin-bottom: 4rem; }
+  .method-header { flex-direction: column; text-align: center; gap: 1.5rem; }
+}

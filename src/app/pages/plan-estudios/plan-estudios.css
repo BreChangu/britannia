@@ -1,0 +1,147 @@
+:host {
+  --bg-dark: #020b0e;
+  --green-primary: #005151;
+  --green-light: #008f8f;
+  --pink-accent: #CF6F77;
+  --white: #ffffff;
+  --text-gray: #a0aec0;
+  --glass-bg: rgba(255, 255, 255, 0.02);
+  --glass-border: rgba(255, 255, 255, 0.05);
+  --font-serif: 'DM Serif Display', serif;
+  --font-sans: 'Manrope', sans-serif;
+}
+
+/* --- BASE --- */
+.masterclass-section {
+  background-color: var(--bg-dark);
+  color: var(--white);
+  font-family: var(--font-sans);
+  min-height: 100vh;
+  padding: 8rem 1.5rem 6rem;
+  position: relative;
+  /* El sticky necesita overflow visible aquí, pero no te preocupes, el contenedor de luces hará el trabajo */
+  overflow: visible; 
+  /* QA FIX EXTRA: Evita el scroll X en toda la sección por precaución */
+  overflow-x: clip; 
+}
+
+/* FIX DEL SCROLL FANTASMA: Encapsula las luces */
+.glow-container {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  overflow: hidden; /* Corta todo lo que se salga */
+  z-index: 0;
+  pointer-events: none;
+}
+
+.ambient-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(150px);
+}
+.glow-1 { width: 50vw; height: 50vw; background: rgba(207, 111, 119, 0.15); top: -10%; right: -10%; }
+.glow-2 { width: 40vw; height: 40vw; background: rgba(0, 81, 81, 0.2); bottom: 10%; left: -10%; }
+
+.masterclass-container {
+  max-width: 80rem;
+  margin: 0 auto;
+  position: relative;
+  z-index: 10;
+}
+
+/* --- HEADER --- */
+.masterclass-header { text-align: center; margin-bottom: 4rem; }
+.eyebrow-tech { color: var(--green-light); text-transform: uppercase; letter-spacing: 4px; font-size: 0.85rem; font-weight: 800; display: block; margin-bottom: 1rem; }
+.master-title { font-family: var(--font-serif); font-size: clamp(3rem, 5vw, 4.5rem); margin: 0 0 2rem 0; }
+
+.level-selector { display: inline-flex; background: rgba(0, 0, 0, 0.5); padding: 0.5rem; border-radius: 4rem; border: 1px solid var(--glass-border); flex-wrap: wrap; justify-content: center; }
+.level-selector button { background: transparent; border: none; color: var(--text-gray); padding: 0.8rem 2rem; border-radius: 3rem; font-weight: 700; font-size: 1rem; cursor: pointer; transition: all 0.3s ease; }
+.level-selector button:hover { color: var(--white); }
+.level-selector button.active { background: var(--pink-accent); color: var(--white); box-shadow: 0 0 20px rgba(207, 111, 119, 0.4); }
+
+/* --- SPLIT GRID --- */
+.conversion-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 4rem; align-items: start; }
+
+.sales-pitch-col { position: relative; }
+.sticky-wrapper { position: sticky; top: 7rem; display: flex; flex-direction: column; gap: 1.5rem; }
+
+.hero-image-wrapper { position: relative; width: 100%; aspect-ratio: 16/10; border-radius: 1rem; overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,0.6); border: 1px solid var(--glass-border); }
+.level-hero-img { width: 100%; height: 100%; object-fit: cover; }
+.image-overlay-dark { position: absolute; inset: 0; background: linear-gradient(to top, rgba(2, 11, 14, 1), transparent 60%); }
+.level-badge-float { position: absolute; top: 1.5rem; left: 1.5rem; background: var(--white); color: var(--bg-dark); padding: 0.5rem 1.2rem; border-radius: 2rem; font-weight: 900; font-size: 1rem; z-index: 2; }
+
+.dynamic-title { font-family: var(--font-serif); font-size: 2.5rem; margin: 0; line-height: 1.1; }
+.sales-subtitle { color: var(--text-gray); font-size: 1.1rem; line-height: 1.6; margin: 0; }
+.quick-benefits { display: flex; gap: 1.5rem; border-top: 1px solid var(--glass-border); border-bottom: 1px solid var(--glass-border); padding: 1rem 0; }
+.quick-benefits span { font-size: 0.9rem; font-weight: 700; display: flex; align-items: center; gap: 0.5rem; }
+
+/* NUEVO: APILAMIENTO DE BOTONES */
+.action-stack { display: flex; flex-direction: column; gap: 1rem; margin-top: 0.5rem; }
+
+.btn-master-convert {
+  background: linear-gradient(135deg, var(--green-light) 0%, var(--green-primary) 100%);
+  color: var(--white); text-align: center; padding: 1.2rem; border-radius: 4rem;
+  font-size: 1.2rem; font-weight: 800; text-decoration: none; display: flex;
+  justify-content: center; align-items: center; gap: 10px; transition: all 0.3s ease;
+}
+.btn-master-convert:hover { transform: translateY(-3px) scale(1.02); }
+
+/* EL EFECTO PULSE (Latido de Conversión) */
+.pulse-effect { animation: pulse-glow 2s infinite; }
+@keyframes pulse-glow {
+  0% { box-shadow: 0 15px 30px rgba(0, 81, 81, 0.4), 0 0 0 0 rgba(0, 143, 143, 0.6); }
+  70% { box-shadow: 0 15px 30px rgba(0, 81, 81, 0.4), 0 0 0 15px rgba(0, 143, 143, 0); }
+  100% { box-shadow: 0 15px 30px rgba(0, 81, 81, 0.4), 0 0 0 0 rgba(0, 143, 143, 0); }
+}
+
+/* EL BOTÓN FANTASMA (Lead Magnet) */
+.btn-ghost-download {
+  background: transparent; border: 1px solid var(--glass-border); color: var(--text-gray);
+  padding: 1rem; border-radius: 3rem; font-size: 1rem; font-weight: 600;
+  cursor: pointer; transition: all 0.3s ease; font-family: var(--font-sans);
+}
+.btn-ghost-download:hover { background: rgba(255, 255, 255, 0.05); color: var(--white); border-color: rgba(255, 255, 255, 0.2); }
+
+.scarcity-text { text-align: center; font-size: 0.85rem; color: var(--pink-accent); margin: 0; font-weight: 600; }
+
+/* --- COLUMNA DERECHA --- */
+.curriculum-scroll-col { display: flex; flex-direction: column; gap: 2rem; }
+.module-glass-panel { background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 1.5rem; padding: 2.5rem; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); transition: transform 0.3s ease; }
+.module-glass-panel:hover { border-color: rgba(255,255,255,0.15); background: rgba(255, 255, 255, 0.04); }
+.highlight-panel { background: rgba(207, 111, 119, 0.05); border-color: rgba(207, 111, 119, 0.2); }
+
+.panel-header { display: flex; align-items: center; gap: 1.5rem; margin-bottom: 2rem; }
+.icon-box { width: 50px; height: 50px; background: rgba(255,255,255,0.05); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; border: 1px solid var(--glass-border); }
+.panel-header h3 { font-family: var(--font-serif); font-size: 2rem; margin: 0; color: var(--white); }
+.feature-alert { background: rgba(0, 81, 81, 0.2); border-left: 4px solid var(--green-light); padding: 1rem 1.5rem; border-radius: 0 8px 8px 0; margin-bottom: 2rem; font-size: 1rem; color: var(--white); }
+
+.skills-cloud { display: flex; flex-wrap: wrap; gap: 0.8rem; }
+
+/* NUEVO: ANIMACIÓN EN CASCADA PARA LOS TAGS */
+.skill-tag {
+  background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); color: var(--text-gray);
+  padding: 0.7rem 1.2rem; border-radius: 8px; font-size: 0.95rem; font-weight: 500; transition: all 0.2s ease;
+  /* Configuración de la cascada */
+  opacity: 0;
+  transform: translateY(15px);
+  animation: cascadeFadeIn 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes cascadeFadeIn {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.skill-tag:hover { background: var(--white); color: var(--bg-dark); border-color: var(--white); transform: translateY(-2px); }
+.highlight-panel .skill-tag { background: rgba(207, 111, 119, 0.1); border-color: rgba(207, 111, 119, 0.2); color: var(--white); }
+.highlight-panel .skill-tag:hover { background: var(--pink-accent); color: var(--white); }
+
+/* --- RESPONSIVE --- */
+@media (max-width: 1024px) {
+  .conversion-grid { grid-template-columns: 1fr; }
+  .sticky-wrapper { position: relative; top: 0; }
+  .master-title { font-size: 2.8rem; }
+  .quick-benefits { flex-wrap: wrap; justify-content: center; }
+  .level-selector { flex-direction: column; width: 100%; border-radius: 1rem; }
+  .level-selector button { width: 100%; }
+}

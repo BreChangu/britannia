@@ -1,23 +1,40 @@
 :host {
-  --color-bg: rgba(228, 213, 211, 1); /* Tu color Arena */
-  --color-text: #005515; /* Verde Bosque */
+  --color-bg: rgba(228, 213, 211, 1); /* Arena Britannia */
+  --color-text: #005151; /* Verde Bosque */
   --color-accent: #CF6F77; /* Rosa Britannia */
 }
 
-/* --- CONTENEDOR SPLIT 50/50 --- */
+/* --- CONTENEDOR PRINCIPAL --- */
 .hero-split {
   display: grid;
-  grid-template-columns: 1fr 1fr; /* Divide la pantalla exactamente a la mitad */
+  grid-template-columns: 1fr 1fr;
   min-height: 100vh;
   background-color: var(--color-bg);
   overflow: hidden;
+  position: relative;
 }
 
-/* --- MITAD IZQUIERDA (IMAGEN CON FADE) --- */
+
+/* --- SOLUCIÓN DE CONTRASTE: Capa de protección superior --- */
+/* Esta capa oscurece ligeramente solo la parte de arriba para que el Nav se lea bien */
+.hero-split::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 12rem;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.15) 0%, transparent 100%);
+  z-index: 5;
+  pointer-events: none;
+}
+
+/* --- MITAD IZQUIERDA: Imagen con Fade Profesional --- */
 .split-image-side {
   position: relative;
   width: 100%;
   height: 100%;
+  z-index: 1;
 }
 
 .fade-image {
@@ -25,39 +42,47 @@
   height: 100%;
   object-fit: cover;
   object-position: center 20%;
-  
-  /* EL FADE: 100% visible a la izquierda, desvaneciéndose hacia la derecha */
-  mask-image: linear-gradient(to right, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
-  -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
+  /* QA: Máscara suavizada para una transición más orgánica */
+  mask-image: linear-gradient(to right, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%);
+  -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%);
 }
 
-/* --- MITAD DERECHA (CONTENIDO + CINTA) --- */
+/* --- MITAD DERECHA: Contenido con Mejor Legibilidad --- */
 .split-content-side {
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 8rem 4rem 6rem 2rem; /* Espacio para respirar */
+  padding: 8rem 4rem 6rem 2rem;
+  z-index: 2;
 }
 
 .content-wrapper {
-  max-width: 35rem; /* ~560px */
+  max-width: 35rem;
+  /* Añadimos un sutil filtro de desenfoque al fondo si la imagen se mete mucho */
+  padding: 2rem;
+  border-radius: 1.5rem;
+  background: rgba(228, 213, 211, 0.4); 
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 .badge {
   display: inline-block;
-  background-color: rgba(0, 85, 21, 0.1);
+  background-color: rgba(0, 81, 81, 0.1);
   color: var(--color-text);
   padding: 0.5rem 1.2rem;
   border-radius: 2rem;
   font-weight: 700;
-  font-size: 0.9rem;
-  margin-bottom: 2rem;
+  font-size: 0.85rem;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .main-title {
   font-family: var(--font-serif);
-  font-size: clamp(3.5rem, 5vw, 5.5rem);
+  font-size: clamp(3rem, 5vw, 5rem);
   color: var(--color-text);
   line-height: 1.1;
   margin-bottom: 1.5rem;
@@ -68,132 +93,62 @@
 }
 
 .subtitle {
-  font-size: 1.2rem;
-  color: #333;
-  margin-bottom: 3rem;
+  font-size: 1.15rem;
+  color: #444;
+  margin-bottom: 2.5rem;
   line-height: 1.6;
 }
 
-/* --- ESTILOS PARA LOS NUEVOS ICONOS SVG --- */
-.icon-svg {
-  width: 1.4rem;  /* Tamaño ligeramente mayor al texto para buen balance */
-  height: 1.4rem;
-  /* La magia del SVG: "currentColor" hace que el icono tome el color del texto que lo rodea */
-  fill: currentColor; 
-  /* Si prefieres iconos de línea en lugar de rellenos, cambia "fill" por "none" y descomenta abajo */
-  /* fill: none; */
-  /* stroke: currentColor; */
-  /* stroke-width: 12px; */
-  transition: all 0.3s ease;
-  /* Un pequeño ajuste para que se alineen visualmente con el texto */
-  margin-bottom: -2px; 
-}
-/* --- LA CINTA DE CRISTAL (GLASSMORPHISM) --- */
+/* --- CINTA DINÁMICA (TICKER) --- */
 .glass-ticker-wrapper {
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
-  /* El efecto de Cristal Esmerilado */
-  background: rgba(255, 255, 255, 0.4); /* Blanco semi-transparente */
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-top: 1px solid rgba(255, 255, 255, 0.6); /* Borde de luz superior */
-  padding: 1rem 0;
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-top: 1px solid rgba(255, 255, 255, 0.4);
+  padding: 1.2rem 0;
   overflow: hidden;
-  box-shadow: 0 -4px 30px rgba(0, 85, 21, 0.05); /* Sombra muy sutil */
-}
-
-.ticker-nav {
-  width: 100%;
+  z-index: 10;
 }
 
 .ticker-track {
   display: flex;
   align-items: center;
-  gap: 2.5rem;
+  gap: 3rem;
   width: max-content;
-  list-style: none; /* Quitamos las viñetas del ul */
-  padding: 0;
-  margin: 0;
-  animation: marqueeRightHalf 22s linear infinite;
+  animation: marqueeRightHalf 25s linear infinite;
 }
 
-/* PAUSA EN HOVER (CRUCIAL PARA UX) */
 .ticker-track:hover {
   animation-play-state: paused;
 }
 
-.ticker-item {
-  display: flex;
-  align-items: center;
-}
-
-/* Estilo para los enlaces interactivos */
-.ticker-link {
-  color: var(--color-text); /* Verde Bosque */
-  font-weight: 700;
-  font-size: 1.05rem;
-  text-decoration: none;
-  letter-spacing: 0.5px;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  transition: color 0.3s ease, transform 0.3s ease;
-}
-
-.ticker-text {
+.ticker-link, .ticker-text {
   color: var(--color-text);
-  font-weight: 600;
-  font-size: 1.05rem;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.7rem;
+  transition: all 0.3s ease;
 }
 
-/* Hover effect en los enlaces */
 .ticker-link:hover {
-  color: var(--color-accent); /* Cambia a Rosa al pasar el mouse */
-  transform: translateY(-2px); /* Se levanta un poquito */
+  color: var(--color-accent);
+  transform: translateY(-2px);
 }
 
-.ticker-track .dot {
-  color: var(--color-accent); /* Puntito Rosa */
-  font-size: 1.5rem;
-  user-select: none; /* Evita que se seleccione como texto */
+.icon-svg {
+  width: 1.3rem;
+  height: 1.3rem;
+  fill: currentColor;
 }
 
-@keyframes marqueeRightHalf {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-
-/* Ajuste móvil */
-@media (max-width: 62rem) {
-  .glass-ticker-wrapper {
-    position: relative;
-    width: 100vw;
-    margin-left: -2rem;
-    background: rgba(255, 255, 255, 0.6); /* Un poco más sólido en móvil */
-  }
-}
-
-.ticker-track {
-  display: flex;
-  align-items: center;
-  gap: 2rem;
-  width: max-content;
-  animation: marqueeRightHalf 20s linear infinite;
-}
-
-.ticker-track span {
-  font-weight: 600;
-  font-size: 1rem;
-  letter-spacing: 0.5px;
-  white-space: nowrap;
-}
-
-.ticker-track .dot {
+.dot {
   color: var(--color-accent);
   font-size: 1.5rem;
 }
@@ -203,30 +158,31 @@
   100% { transform: translateX(-50%); }
 }
 
-/* --- RESPONSIVE (MÓVIL Y TABLET) --- */
-/* En celular, dividir 50/50 no sirve, así que apilamos */
-@media (max-width: 62rem) { /* ~992px */
+/* --- RESPONSIVE --- */
+@media (max-width: 62rem) {
   .hero-split {
     grid-template-columns: 1fr;
-    grid-template-rows: 50vh auto; /* La imagen arriba, el texto abajo */
+    grid-template-rows: 45vh auto;
   }
 
   .fade-image {
-    /* Cambiamos el fade para que se desvanezca hacia abajo en lugar de a la derecha */
-    mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%);
-    -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%);
+    mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
   }
 
   .split-content-side {
-    padding: 2rem;
-    align-items: center;
+    padding: 3rem 1.5rem 6rem;
     text-align: center;
   }
 
-  .half-ticker {
-    position: relative; /* Lo sacamos del absolute para que fluya en el celular */
-    margin-top: 4rem;
-    width: 100vw;
-    margin-left: -2rem; /* Compensa el padding */
+  .content-wrapper {
+    background: transparent;
+    backdrop-filter: none;
+    padding: 0;
+  }
+
+  .glass-ticker-wrapper {
+    position: fixed; /* En móvil puede ser útil tenerla siempre a la vista o al final del flujo */
+    bottom: 0;
   }
 }

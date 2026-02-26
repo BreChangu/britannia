@@ -1,20 +1,15 @@
 <nav [class.scrolled]="isScrolled()">
   <div class="nav-container">
     
-   <a routerLink="/" class="logo" (click)="closeMenu()" aria-label="Ir al inicio">
-      <img 
-        src="images/Britania.png" 
-        alt="Britannia Learning Center" 
-        class="logo-img"
-        loading="eager" 
-        fetchpriority="high">
+    <a routerLink="/" class="logo" (click)="closeMenu()" aria-label="Ir al inicio">
+      <img src="images/Britania.png" alt="Britannia Learning Center" class="logo-img" loading="eager" fetchpriority="high">
     </a>
 
     <ul class="nav-links desktop-only">
       
       <li class="dropdown">
         <button class="dropbtn" aria-haspopup="true" aria-expanded="false">
-          Haz tu test de nivel <span class="arrow">▼</span>
+          Haz tu test <span class="arrow">▼</span>
         </button>
         <div class="dropdown-content">
           <a routerLink="/test-ingles">Test de nivel de inglés</a>
@@ -22,13 +17,21 @@
         </div>
       </li>
 
+      <li>
+        <a routerLink="/nosotros" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="nav-item">
+          Quiénes somos
+        </a>
+      </li>
+
       <li class="dropdown">
         <button class="dropbtn" aria-haspopup="true" aria-expanded="false">
-          Quiénes somos <span class="arrow">▼</span>
+          Niveles de Inglés <span class="arrow">▼</span>
         </button>
         <div class="dropdown-content">
-          <a routerLink="/nosotros/mision">Visión y Misión</a>
-          <a routerLink="/nosotros/plan-estudios">Plan de estudios</a>
+          <a routerLink="/plan-estudios/a1">Nivel A1 (Básico)</a>
+          <a routerLink="/plan-estudios/a2">Nivel A2 (Pre-intermedio)</a>
+          <a routerLink="/plan-estudios/b1">Nivel B1 (Intermedio)</a>
+          <a routerLink="/plan-estudios/b2">Nivel B2 (Avanzado)</a>
         </div>
       </li>
 
@@ -38,7 +41,7 @@
       <a routerLink="/contacto" class="btn-primary btn-contact">Contacto</a>
     </div>
 
-    <button class="hamburger" [class.active]="isMenuOpen()" (click)="toggleMenu()" aria-label="Abrir menú" [attr.aria-expanded]="isMenuOpen()">
+    <button class="hamburger" [class.active]="isMenuOpen()" (click)="toggleMenu()" aria-label="Abrir menú">
       <span></span><span></span><span></span>
     </button>
   </div>
@@ -48,7 +51,7 @@
       
       <li class="mobile-dropdown">
         <button class="mobile-dropbtn" (click)="toggleTestMenu()">
-          Haz tu test de nivel <span class="arrow" [class.rotate]="isTestMenuOpen()">▼</span>
+          Haz tu test <span class="arrow" [class.rotate]="isTestMenuOpen()">▼</span>
         </button>
         <div class="mobile-dropdown-content" [class.show]="isTestMenuOpen()">
           <a routerLink="/test-ingles" (click)="closeMenu()">Test de inglés</a>
@@ -56,13 +59,21 @@
         </div>
       </li>
 
+      <li>
+        <a routerLink="/nosotros" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="closeMenu()" class="mobile-nav-item">
+          Quiénes somos
+        </a>
+      </li>
+
       <li class="mobile-dropdown">
-        <button class="mobile-dropbtn" (click)="toggleAboutMenu()">
-          Quiénes somos <span class="arrow" [class.rotate]="isAboutMenuOpen()">▼</span>
+        <button class="mobile-dropbtn" (click)="togglePlanesMenu()">
+          Niveles de Inglés <span class="arrow" [class.rotate]="isPlanesMenuOpen()">▼</span>
         </button>
-        <div class="mobile-dropdown-content" [class.show]="isAboutMenuOpen()">
-          <a routerLink="/nosotros/mision" (click)="closeMenu()">Visión y Misión</a>
-          <a routerLink="/nosotros/plan-estudios" (click)="closeMenu()">Plan de estudios</a>
+        <div class="mobile-dropdown-content" [class.show]="isPlanesMenuOpen()">
+          <a routerLink="/plan-estudios/a1" (click)="closeMenu()">Nivel A1 (Básico)</a>
+          <a routerLink="/plan-estudios/a2" (click)="closeMenu()">Nivel A2 (Pre-intermedio)</a>
+          <a routerLink="/plan-estudios/b1" (click)="closeMenu()">Nivel B1 (Intermedio)</a>
+          <a routerLink="/plan-estudios/b2" (click)="closeMenu()">Nivel B2 (Avanzado)</a>
         </div>
       </li>
 

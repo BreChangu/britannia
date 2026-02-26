@@ -1,48 +1,58 @@
 <footer class="britannia-footer">
+  <div class="watermark-bg" aria-hidden="true">B.</div>
+
   <div class="container">
-    
     <div class="footer-grid">
       
       <div class="brand-col">
-        <a routerLink="/" class="footer-logo">
+        <a routerLink="/" class="footer-logo" aria-label="Ir al inicio">
           Britannia<span class="dot">.</span>
         </a>
         <p class="brand-desc">
-          Centro de idiomas especializado en certificación internacional y fluidez conversacional. Tu puerta al mundo global.
+          Centro de idiomas especializado en fluidez conversacional. Tu puerta al mundo global.
         </p>
-        <div class="social-row">
-          <a href="#" class="social-btn" aria-label="Facebook">FB</a>
-          <a href="#" class="social-btn" aria-label="Instagram">IG</a>
-          <a href="#" class="social-btn" aria-label="LinkedIn">LN</a>
-        </div>
+        <nav aria-label="Redes Sociales" class="social-row">
+          <a href="#" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Facebook">FB</a>
+          <a href="#" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Instagram">IG</a>
+          <a href="#" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="LinkedIn">IN</a>
+        </nav>
       </div>
 
-      <div class="nav-col">
-        <h4 class="col-title">Explorar</h4>
+      <nav aria-label="Navegación del sitio" class="nav-col">
+        <h2 class="col-title">Explorar</h2>
         <ul class="footer-links">
-          <li><a routerLink="/">Inicio</a></li>
           <li><a routerLink="/nosotros">Filosofía & Equipo</a></li>
           <li><a routerLink="/cursos">Cursos & Niveles</a></li>
+          <li><a routerLink="/test-ingles">Test de Nivel</a></li>
           <li><a routerLink="/blog">Blog Educativo</a></li>
         </ul>
-      </div>
+      </nav>
 
-      <div class="contact-col">
-        <h4 class="col-title">Contacto</h4>
+      <address class="contact-col">
+        <h2 class="col-title">Contacto</h2>
         <ul class="contact-list">
           <li>
-            <span class="icon">📍</span>
-            <span>Av. Principal 123, Ciudad de México</span>
+            <span class="icon-svg">📍</span>
+            <span>Av. Principal 123, CDMX</span>
           </li>
           <li>
-            <span class="icon">📞</span>
+            <span class="icon-svg">📞</span>
             <a href="tel:+525512345678" class="phone-link">+52 55 1234 5678</a>
           </li>
           <li>
-            <span class="icon">✉️</span>
+            <span class="icon-svg">✉️</span>
             <a href="mailto:hola@britannia.edu" class="mail-link">hola@britannia.edu</a>
           </li>
         </ul>
+      </address>
+
+      <div class="newsletter-col">
+        <h2 class="col-title">Únete a la comunidad</h2>
+        <p class="newsletter-desc">Recibe tips semanales para mejorar tu pronunciación y ofertas exclusivas.</p>
+        <form class="newsletter-form" (submit)="onSubscribe($event)">
+          <input type="email" placeholder="Tu correo electrónico" required class="newsletter-input" aria-label="Correo electrónico">
+          <button type="submit" class="btn-subscribe">→</button>
+        </form>
       </div>
 
     </div>
@@ -50,4 +60,15 @@
     <div class="divider"></div>
 
     <div class="footer-bottom">
-      <p class="copyright">
+      <div class="bottom-left">
+        <p class="copyright">&copy; {{ currentYear }} Britannia Learning Center.</p>
+        <span class="trust-badges">Preparación para: <strong>TOEFL • IELTS • Cambridge</strong></span>
+      </div>
+      
+      <nav aria-label="Enlaces legales" class="legal-links">
+        <a routerLink="/privacidad">Privacidad</a>
+        <a routerLink="/terminos">Términos</a>
+      </nav>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,84 @@
+<section class="masterclass-section">
+  
+  <div class="glow-container">
+    <div class="ambient-glow glow-1"></div>
+    <div class="ambient-glow glow-2"></div>
+  </div>
+
+  <div class="masterclass-container">
+    
+    <div class="masterclass-header">
+      <span class="eyebrow-tech">Path de Aprendizaje</span>
+      <h1 class="master-title">Nuestros Niveles</h1>
+      
+      <nav class="level-selector">
+        <button [class.active]="activeLevelId() === 'a1'" (click)="selectLevel('a1')">A1 Básico</button>
+        <button [class.active]="activeLevelId() === 'a2'" (click)="selectLevel('a2')">A2 Pre-Int</button>
+        <button [class.active]="activeLevelId() === 'b1'" (click)="selectLevel('b1')">B1 Intermedio</button>
+        <button [class.active]="activeLevelId() === 'b2'" (click)="selectLevel('b2')">B2 Avanzado</button>
+      </nav>
+    </div>
+
+    <div class="conversion-grid">
+      
+      <div class="sales-pitch-col">
+        <div class="sticky-wrapper">
+          
+          <div class="hero-image-wrapper">
+            <div class="level-badge-float">{{ currentLevelData().badge }}</div>
+            <img [src]="'images/level-' + currentLevelData().id + '.jpg'" alt="Estudiantes Britannia" class="level-hero-img" onerror="this.style.display='none'">
+            <div class="image-overlay-dark"></div>
+          </div>
+
+          <h2 class="dynamic-title">{{ currentLevelData().title }}</h2>
+          <p class="sales-subtitle">Alcanza la fluidez con nuestro método 100% conversacional. Domina situaciones reales desde el primer mes.</p>
+
+          <div class="quick-benefits">
+            <span><i class="icon">⏳</i> 3 Meses</span>
+            <span><i class="icon">🗣️</i> 100% Práctico</span>
+            <span><i class="icon">🏅</i> Certificación</span>
+          </div>
+
+          <div class="action-stack">
+            <a [href]="getWhatsAppLink(currentLevelData().badge)" target="_blank" rel="noopener noreferrer" class="btn-master-convert pulse-effect">
+              Inscribirme ahora <span class="arrow">→</span>
+            </a>
+            <button class="btn-ghost-download">
+              📄 Descargar temario en PDF
+            </button>
+          </div>
+          <p class="scarcity-text">Inscripciones abiertas. Cupos limitados.</p>
+
+        </div>
+      </div>
+
+      <div class="curriculum-scroll-col">
+        
+        @for (module of currentLevelData().modules; track module.title) {
+          <div class="module-glass-panel" [class.highlight-panel]="module.isFeature">
+            
+            <div class="panel-header">
+              <div class="icon-box">{{ module.icon }}</div>
+              <h3>{{ module.title }}</h3>
+            </div>
+
+            @if (module.isFeature) {
+              <div class="feature-alert">
+                <strong>🎯 Objetivo:</strong> {{ module.featureText }}
+              </div>
+            }
+
+            <div class="skills-cloud">
+              @for (topic of module.topics; track topic; let i = $index) {
+                <span class="skill-tag" [style.animation-delay]="(i * 0.1) + 's'">{{ topic }}</span>
+              }
+            </div>
+            
+          </div>
+        }
+
+      </div>
+      
+    </div>
+  </div>
+</section>

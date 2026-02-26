@@ -11,4 +11,10 @@ export class Footer {
 
   currentYear = new Date().getFullYear();
 
+  onSubscribe(event: Event) {
+    event.preventDefault();
+    // Aquí después conectaremos el API para guardar el correo
+    console.log('¡Suscripción enviada!');
+  }
+
 }
