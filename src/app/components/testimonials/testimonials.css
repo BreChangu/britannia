@@ -1,0 +1,162 @@
+:host {
+  --bg-dark: #020b0e;
+  --green-primary: #005151;
+  --green-light: #008f8f;
+  --pink-accent: #CF6F77;
+  --white: #ffffff;
+  --text-gray: #a0aec0;
+  --font-serif: 'DM Serif Display', serif;
+  --font-sans: 'Manrope', sans-serif;
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.05);
+}
+
+.testimonials-section { background-color: var(--bg-dark); padding: 5rem 0 8rem 0; position: relative; overflow: hidden; font-family: var(--font-sans); }
+
+.ambient-glow.glow-pink { position: absolute; top: 0%; left: 50%; transform: translate(-50%, -50%); width: 60vw; height: 60vw; background: radial-gradient(circle, rgba(207, 111, 119, 0.08) 0%, transparent 70%); filter: blur(120px); z-index: 0; pointer-events: none; }
+
+.testimonials-container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 10; }
+
+.testimonials-header { text-align: center; margin-bottom: 4rem; }
+.eyebrow { color: var(--pink-accent); font-weight: 800; letter-spacing: 2px; text-transform: uppercase; font-size: 0.9rem; display: block; margin-bottom: 1rem; }
+.section-title { font-family: var(--font-serif); font-size: clamp(2.5rem, 4vw, 3.5rem); color: var(--white); line-height: 1.2; }
+.text-gradient { background: linear-gradient(135deg, var(--white) 0%, var(--green-light) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+/* --- BOTÓN PARA ESCRIBIR RESEÑA --- */
+.btn-write-review { margin-top: 1.5rem; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--glass-border); color: var(--white); padding: 0.8rem 1.8rem; border-radius: 50px; font-family: var(--font-sans); font-weight: 700; font-size: 0.95rem; cursor: pointer; display: inline-flex; align-items: center; gap: 10px; transition: all 0.3s ease; }
+.btn-write-review:hover { background: rgba(207, 111, 119, 0.2); border-color: var(--pink-accent); transform: translateY(-2px); }
+.plus-icon { color: var(--pink-accent); font-size: 1.2rem; font-weight: 900; }
+
+/* --- MASONRY GRID --- */
+.testimonials-masonry { column-count: 3; column-gap: 2rem; width: 100%; }
+
+/* --- TARJETAS GLASSMORPHISM PREMIUM --- */
+.testimonial-card.glass { break-inside: avoid; margin-bottom: 2rem; background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.08); border-top: 1px solid rgba(255, 255, 255, 0.2); border-radius: 1.5rem; padding: 2.2rem; transition: all 0.4s ease; display: flex; flex-direction: column; gap: 1.2rem; }
+.testimonial-card.glass:hover { transform: translateY(-5px); background: rgba(255, 255, 255, 0.05); border-color: rgba(255, 255, 255, 0.2); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3); }
+
+.card-header { display: flex; align-items: center; gap: 1rem; width: 100%; }
+.reviewer-avatar { width: 45px; height: 45px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(255,255,255,0.1); background-color: var(--green-primary); } /* Fondo verde de respaldo si la imagen falla */
+.reviewer-info { display: flex; flex-direction: column; flex-grow: 1; }
+.reviewer-name { color: var(--white); font-weight: 700; font-size: 1.05rem; margin: 0; }
+.reviewer-date { color: var(--text-gray); font-size: 0.8rem; }
+
+/* --- INSIGNIAS (BADGES) --- */
+.trust-badge { background: rgba(255,255,255,0.05); padding: 6px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; }
+.badge-icon { width: 16px; height: 16px; }
+.fb-color { color: #1877F2; }
+
+.stars { color: #FBBF24; font-size: 1rem; letter-spacing: 3px; }
+.review-text { color: #cbd5e0; font-size: 1rem; line-height: 1.7; margin: 0; font-style: italic; font-weight: 400; }
+
+.card-footer { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.05); }
+.btn-verify-clean { display: inline-flex; align-items: center; gap: 8px; color: var(--text-gray); font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; text-decoration: none; transition: all 0.3s ease; }
+.btn-verify-clean:hover { color: var(--pink-accent); }
+.btn-verify-clean .arrow { transition: transform 0.3s; font-size: 1rem; }
+.btn-verify-clean:hover .arrow { transform: translate(3px, -3px); }
+
+/* =========================================
+   MODAL DE CRISTAL (VENTANA EMERGENTE)
+   ========================================= */
+.review-modal-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(2, 11, 14, 0.85); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: center; z-index: 9999; opacity: 0; visibility: hidden; transition: all 0.4s ease; }
+.review-modal-overlay.show { opacity: 1; visibility: visible; }
+
+.review-modal-content.glass { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-top: 1px solid rgba(255, 255, 255, 0.2); border-radius: 2rem; padding: 3rem; width: 90%; max-width: 500px; position: relative; transform: translateY(30px); transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5); }
+.review-modal-overlay.show .review-modal-content { transform: translateY(0); }
+
+.btn-close { position: absolute; top: 1.5rem; right: 1.5rem; background: none; border: none; color: var(--text-gray); font-size: 2rem; cursor: pointer; line-height: 1; transition: color 0.3s; }
+.btn-close:hover { color: var(--pink-accent); }
+
+.modal-title { color: var(--white); font-family: var(--font-serif); font-size: 2.2rem; margin: 0 0 0.5rem 0; line-height: 1.2; }
+.modal-subtitle { color: var(--text-gray); font-size: 0.95rem; margin-bottom: 2rem; }
+
+/* --- BOTÓN DE GOOGLE SSO --- */
+.btn-google-sso { display: flex; align-items: center; justify-content: center; gap: 12px; width: 100%; background: var(--white); color: #3c4043; border: none; border-radius: 1rem; padding: 1.2rem; font-family: var(--font-sans); font-weight: 700; font-size: 1.05rem; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.2); transition: all 0.3s ease; margin-top: 1.5rem; }
+.btn-google-sso:hover { background: #f8f9fa; transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,0,0,0.3); }
+.google-icon-btn { width: 22px; height: 22px; }
+
+/* --- FORMULARIO PREMIUM Y ESTADO AUTENTICADO --- */
+.fade-in { animation: fadeIn 0.4s ease forwards; }
+@keyframes fadeIn { from{opacity:0;} to{opacity:1;} }
+
+.user-authenticated { display: flex; align-items: center; gap: 12px; background: rgba(0, 81, 81, 0.2); padding: 0.8rem 1.2rem; border-radius: 50px; border: 1px solid rgba(0, 143, 143, 0.3); margin-bottom: 2rem; display: inline-flex; }
+.auth-avatar { width: 35px; height: 35px; border-radius: 50%; object-fit: cover; border: 2px solid var(--green-light); }
+.auth-name { color: var(--white); font-weight: 700; font-size: 0.95rem; }
+
+.premium-form { display: flex; flex-direction: column; gap: 1.5rem; }
+.interactive-stars { display: flex; justify-content: center; gap: 0.5rem; margin-bottom: 1rem; }
+.star-btn { background: none; border: none; font-size: 2.5rem; color: rgba(255, 255, 255, 0.1); cursor: pointer; transition: all 0.2s ease; }
+.star-btn.active, .star-btn:hover { color: #FBBF24; transform: scale(1.1); }
+
+.premium-input { width: 100%; background: rgba(0, 0, 0, 0.2); border: 1px solid var(--glass-border); padding: 1.2rem 1.5rem; border-radius: 1rem; color: var(--white); font-family: var(--font-sans); font-size: 1rem; transition: all 0.3s ease; }
+.premium-input:focus { outline: none; border-color: var(--pink-accent); background: rgba(0, 0, 0, 0.4); }
+
+.btn-primary-glow { background: var(--pink-accent); color: var(--white); padding: 1.2rem 2.5rem; border-radius: 1rem; font-weight: 800; text-decoration: none; display: flex; align-items: center; justify-content: center; transition: all 0.4s; box-shadow: 0 10px 30px rgba(207, 111, 119, 0.3); border: none; cursor: pointer; width: 100%; margin-top: 1rem; }
+.btn-primary-glow:hover:not(:disabled) { transform: translateY(-3px); background: #e07f87; }
+.btn-primary-glow:disabled { opacity: 0.3; cursor: not-allowed; }
+
+/* --- RESPUESTA DEL PROPIETARIO (OWNER REPLY) --- */
+.owner-reply-box {
+  margin-top: 1rem;
+  padding: 1.2rem;
+  background: rgba(0, 81, 81, 0.15); /* Fondo verde institucional muy sutil */
+  border-left: 3px solid var(--pink-accent); /* Línea de acento a la izquierda */
+  border-radius: 0 1rem 1rem 0;
+  position: relative;
+}
+
+.owner-reply-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 0.5rem;
+}
+
+.britannia-avatar {
+  width: 24px;
+  height: 24px;
+  background: var(--bg-dark);
+  border: 1px solid var(--green-light);
+  color: var(--white);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 900;
+  font-family: var(--font-serif);
+}
+
+.owner-name {
+  color: var(--white);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.owner-text {
+  color: var(--text-gray);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* --- BOTÓN DE CARGAR MÁS --- */
+.load-more-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 4rem;
+  width: 100%;
+}
+
+.load-more-container .btn-glass {
+  padding: 1rem 3rem;
+  border-radius: 50px;
+  cursor: pointer;
+}
+
+/* ANIMACIONES GLOBALES */
+.hero-animate-up { animation: fadeUp 1s ease-out forwards; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+
+/* RESPONSIVE */
+@media (max-width: 1024px) { .testimonials-masonry { column-count: 2; } }
+@media (max-width: 768px) { .testimonials-masonry { column-count: 1; } .testimonial-card.glass { padding: 1.8rem; } }

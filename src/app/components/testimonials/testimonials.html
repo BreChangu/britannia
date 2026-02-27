@@ -1,0 +1,94 @@
+<section class="testimonials-section">
+  <div class="ambient-glow glow-pink"></div>
+
+  <div class="testimonials-container">
+    
+    <div class="testimonials-header hero-animate-up">
+      <span class="eyebrow">Muro de Confianza</span>
+      <h2 class="section-title">Nuestros alumnos <br> <span class="text-gradient">recomiendan Britannia</span></h2>
+      
+      <button class="btn-write-review" (click)="openModal()">
+        <span class="plus-icon">+</span> Escribir una reseña
+      </button>
+    </div>
+
+    <div class="testimonials-masonry">
+      <div class="testimonial-card glass hero-animate-up" *ngFor="let review of displayedTestimonials()">
+        
+        <div class="card-header">
+          <img [src]="review.avatar" [alt]="review.name" class="reviewer-avatar">
+          <div class="reviewer-info">
+            <h4 class="reviewer-name">{{ review.name }}</h4>
+            <span class="reviewer-date">{{ review.date }}</span>
+          </div>
+          
+          <div class="trust-badge" *ngIf="review.source === 'facebook'">
+            <svg viewBox="0 0 24 24" fill="currentColor" class="badge-icon fb-color"><path d="M14.53 3.53a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06l2.97-2.97H12.75A6.75 6.75 0 0 0 6 15.75V18a.75.75 0 0 1-1.5 0v-2.25A8.25 8.25 0 0 1 12.75 7.5h4.72l-2.97-2.97a.75.75 0 0 1 0-1.06Z"/></svg>
+          </div>
+          <div class="trust-badge" *ngIf="review.source === 'google'">
+             <svg viewBox="0 0 24 24" class="badge-icon"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+          </div>
+        </div>
+
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"{{ review.text }}"</p>
+        
+        <div class="owner-reply-box" *ngIf="review.ownerReply">
+          <div class="owner-reply-header">
+            <div class="britannia-avatar">B</div>
+            <span class="owner-name">Britannia Learning Center</span>
+          </div>
+          <p class="owner-text">{{ review.ownerReply }}</p>
+        </div>
+        <div class="card-footer" *ngIf="review.url !== '#'">
+          <a [href]="review.url" target="_blank" class="btn-verify-clean">
+            Ver original <span class="arrow">↗</span>
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="load-more-container" *ngIf="testimonials().length > 6">
+      <button class="btn-glass" (click)="toggleShowAll()">
+        {{ showAllReviews() ? 'Mostrar menos' : 'Ver todas las historias (' + testimonials().length + ')' }}
+      </button>
+    </div>
+    </div>
+
+  <div class="review-modal-overlay" [class.show]="showReviewModal()">
+    <div class="review-modal-content glass">
+      <button class="btn-close" (click)="closeModal()">×</button>
+      
+      <div class="modal-step" *ngIf="!isLoggedInGoogle()">
+        <h3 class="modal-title">Inicia sesión</h3>
+        <p class="modal-subtitle">Verificamos perfiles para asegurar que cada historia es 100% real y de alumnos auténticos.</p>
+        
+        <button class="btn-google-sso" (click)="simulateGoogleLogin()">
+          <svg viewBox="0 0 24 24" class="google-icon-btn"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+          Continuar con Google
+        </button>
+      </div>
+
+      <div class="modal-step fade-in" *ngIf="isLoggedInGoogle()">
+        <div class="user-authenticated">
+          <img [src]="newReview().avatar" class="auth-avatar" alt="Tu foto">
+          <span class="auth-name">Hola, {{ newReview().name }}</span>
+        </div>
+        
+        <h3 class="modal-title" style="font-size: 1.8rem;">Tu experiencia</h3>
+        
+        <form class="premium-form" (ngSubmit)="submitReview()">
+          <div class="interactive-stars">
+            <button type="button" *ngFor="let star of [1,2,3,4,5]" (click)="setRating(star)" [class.active]="star <= newReview().rating" class="star-btn">★</button>
+          </div>
+          <div class="input-group">
+            <textarea [(ngModel)]="newReview().text" name="text" required rows="4" placeholder="¿Qué fue lo que más te gustó de tus clases en Britannia?" class="premium-input"></textarea>
+          </div>
+          <button type="submit" class="btn-primary-glow w-100" [disabled]="!newReview().text">Publicar Reseña</button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>

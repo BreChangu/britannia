@@ -1,188 +1,262 @@
 :host {
-  --color-bg: rgba(228, 213, 211, 1); /* Arena Britannia */
-  --color-text: #005151; /* Verde Bosque */
-  --color-accent: #CF6F77; /* Rosa Britannia */
+  --bg-dark: #020b0e;
+  --green-primary: #005151;
+  --green-light: #008f8f;
+  --pink-accent: #CF6F77;
+  --white: #ffffff;
+  --text-gray: #a0aec0;
+  --font-serif: 'DM Serif Display', serif;
+  --font-sans: 'Manrope', sans-serif;
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.1);
 }
 
 /* --- CONTENEDOR PRINCIPAL --- */
-.hero-split {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  min-height: 100vh;
-  background-color: var(--color-bg);
-  overflow: hidden;
+.hero-2026 {
   position: relative;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  background-color: var(--bg-dark);
+  overflow: hidden;
+  font-family: var(--font-sans);
+  padding-top: 100px; 
 }
 
-
-/* --- SOLUCIÓN DE CONTRASTE: Capa de protección superior --- */
-/* Esta capa oscurece ligeramente solo la parte de arriba para que el Nav se lea bien */
-.hero-split::before {
-  content: '';
+/* --- IMAGEN Y VELO CINEMÁTICO (BLENDED) --- */
+.hero-bg-image {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  height: 12rem;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.15) 0%, transparent 100%);
-  z-index: 5;
-  pointer-events: none;
-}
-
-/* --- MITAD IZQUIERDA: Imagen con Fade Profesional --- */
-.split-image-side {
-  position: relative;
-  width: 100%;
   height: 100%;
-  z-index: 1;
+  background-image: url('/images/estudiante.webp'); 
+  background-size: cover;
+  background-position: center right; 
+  z-index: 0;
 }
 
-.fade-image {
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  /* MAGIA UI: Doble gradiente. Uno difumina de izquierda a derecha, el otro de abajo hacia arriba para conectarse con la siguiente sección */
+  background: 
+    linear-gradient(to top, rgba(2, 11, 14, 1) 0%, rgba(2, 11, 14, 0) 15%),
+    linear-gradient(to right, rgba(2, 11, 14, 1) 0%, rgba(2, 11, 14, 0.8) 40%, rgba(2, 11, 14, 0) 100%);
+}
+
+/* --- CONTENIDO --- */
+.hero-container {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 20%;
-  /* QA: Máscara suavizada para una transición más orgánica */
-  mask-image: linear-gradient(to right, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%);
-  -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%);
-}
-
-/* --- MITAD DERECHA: Contenido con Mejor Legibilidad --- */
-.split-content-side {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
   position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 8rem 4rem 6rem 2rem;
-  z-index: 2;
+  z-index: 10;
 }
 
-.content-wrapper {
-  max-width: 35rem;
-  /* Añadimos un sutil filtro de desenfoque al fondo si la imagen se mete mucho */
-  padding: 2rem;
-  border-radius: 1.5rem;
-  background: rgba(228, 213, 211, 0.4); 
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+.hero-content-left {
+  max-width: 650px; 
 }
 
-.badge {
+/* --- TIPOGRAFÍA --- */
+.hero-eyebrow {
   display: inline-block;
-  background-color: rgba(0, 81, 81, 0.1);
-  color: var(--color-text);
-  padding: 0.5rem 1.2rem;
-  border-radius: 2rem;
-  font-weight: 700;
+  color: var(--pink-accent);
+  font-weight: 800;
+  letter-spacing: 3px;
+  text-transform: uppercase;
   font-size: 0.85rem;
   margin-bottom: 1.5rem;
+}
+
+.hero-title {
+  font-family: var(--font-serif);
+  font-size: clamp(3.5rem, 6vw, 5.5rem); 
+  color: var(--white);
+  line-height: 1.1;
+  margin-bottom: 2rem;
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, var(--green-light) 0%, #fff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-subtitle {
+  font-size: 1.25rem;
+  color: var(--text-gray);
+  line-height: 1.7;
+  margin-bottom: 3rem;
+  font-weight: 400;
+  max-width: 90%;
+}
+
+/* --- BOTONES DE ACCIÓN (DUALES) --- */
+.hero-actions {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.btn-primary-glow {
+  background: var(--pink-accent);
+  color: var(--white);
+  padding: 1.2rem 2.5rem;
+  border-radius: 1rem;
+  font-weight: 800;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 10px 30px rgba(207, 111, 119, 0.3);
+}
+
+.btn-primary-glow:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(207, 111, 119, 0.5);
+  background: #e07f87; 
+}
+
+.btn-glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  color: var(--white);
+  padding: 1.2rem 2.5rem;
+  border-radius: 1rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.btn-glass:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-3px);
+}
+
+/* --- PÍLDORA DE AUTORIDAD 2026 (SVGs Premium) --- */
+.authority-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 3.5rem;
+  padding: 0.8rem 2rem;
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-radius: 50px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.authority-pill:hover {
+  transform: translateY(-3px);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.auth-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  cursor: default;
+}
+
+.auth-icon-wrapper {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.05);
+  transition: border-color 0.3s ease;
+}
+
+.premium-icon {
+  width: 20px;
+  height: 20px;
+  color: var(--pink-accent);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Micro-interacciones al pasar el mouse sobre cada ítem */
+.auth-item:hover .premium-icon {
+  transform: scale(1.15); 
+}
+.auth-item:hover .auth-icon-wrapper {
+  border-color: rgba(207, 111, 119, 0.4); 
+}
+
+.auth-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.auth-text span {
+  color: var(--text-gray);
+  font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 1px;
 }
 
-.main-title {
-  font-family: var(--font-serif);
-  font-size: clamp(3rem, 5vw, 5rem);
-  color: var(--color-text);
-  line-height: 1.1;
-  margin-bottom: 1.5rem;
+.auth-text strong {
+  color: var(--white);
+  font-size: 1rem;
+  font-weight: 800;
+  font-family: var(--font-sans);
 }
 
-.highlight {
-  color: var(--color-accent);
+.auth-divider {
+  width: 1px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.15);
 }
 
-.subtitle {
-  font-size: 1.15rem;
-  color: #444;
-  margin-bottom: 2.5rem;
-  line-height: 1.6;
+/* --- ANIMACIÓN DE ENTRADA --- */
+.hero-animate-up {
+  animation: fadeUp 1s ease-out forwards;
 }
 
-/* --- CINTA DINÁMICA (TICKER) --- */
-.glass-ticker-wrapper {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background: rgba(255, 255, 255, 0.3);
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
-  border-top: 1px solid rgba(255, 255, 255, 0.4);
-  padding: 1.2rem 0;
-  overflow: hidden;
-  z-index: 10;
-}
-
-.ticker-track {
-  display: flex;
-  align-items: center;
-  gap: 3rem;
-  width: max-content;
-  animation: marqueeRightHalf 25s linear infinite;
-}
-
-.ticker-track:hover {
-  animation-play-state: paused;
-}
-
-.ticker-link, .ticker-text {
-  color: var(--color-text);
-  font-weight: 700;
-  font-size: 0.95rem;
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  gap: 0.7rem;
-  transition: all 0.3s ease;
-}
-
-.ticker-link:hover {
-  color: var(--color-accent);
-  transform: translateY(-2px);
-}
-
-.icon-svg {
-  width: 1.3rem;
-  height: 1.3rem;
-  fill: currentColor;
-}
-
-.dot {
-  color: var(--color-accent);
-  font-size: 1.5rem;
-}
-
-@keyframes marqueeRightHalf {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* --- RESPONSIVE --- */
-@media (max-width: 62rem) {
-  .hero-split {
-    grid-template-columns: 1fr;
-    grid-template-rows: 45vh auto;
+@media (max-width: 992px) {
+  .hero-overlay {
+    background: linear-gradient(180deg, rgba(2, 11, 14, 0.9) 0%, rgba(2, 11, 14, 0.7) 100%);
   }
-
-  .fade-image {
-    mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
-    -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
+  .hero-content-left { text-align: center; margin: 0 auto; }
+  .hero-actions { flex-direction: column; width: 100%; }
+  .btn-primary-glow, .btn-glass { width: 100%; justify-content: center; }
+  .hero-subtitle { margin: 0 auto 3rem; }
+  
+  .authority-pill {
+    margin: 2.5rem auto 0;
+    padding: 1rem 1.5rem;
   }
+}
 
-  .split-content-side {
-    padding: 3rem 1.5rem 6rem;
-    text-align: center;
+@media (max-width: 480px) {
+  .authority-pill {
+    flex-direction: column;
+    gap: 1.5rem;
+    border-radius: 1.5rem;
+    padding: 1.5rem;
   }
-
-  .content-wrapper {
-    background: transparent;
-    backdrop-filter: none;
-    padding: 0;
-  }
-
-  .glass-ticker-wrapper {
-    position: fixed; /* En móvil puede ser útil tenerla siempre a la vista o al final del flujo */
-    bottom: 0;
+  .auth-divider {
+    width: 80%;
+    height: 1px;
   }
 }
